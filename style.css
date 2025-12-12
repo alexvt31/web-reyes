@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Standard */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Header specifico Regalos (override partial) */
+#header-regalos {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+/* Reporte Wrapper */
+.reporte-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Grids */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.chart-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.chart-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.wide-card {
+    grid-column: 1 / -1;
+}
+
+/* Products Grid (Regalos) */
+#tienda-regalos {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.producto-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-card:hover {
+    transform: translateY(-10px);
+}
+
+.producto-img {
+    width: 100%;
+    height: 350px;
+    /* Reduced slightly to help with resolution */
+    /* Fixed height for consistent card sizes */
+    object-fit: cover;
+    /* Fills entire area ("ocupa todo el espacio") */
+    object-position: top center;
+    /* Focus on top (faces/collars) */
+    padding: 0;
+    /* No margins */
+    background: white;
+    /* No background needed as it covers */
+    image-rendering: auto;
+    /* Ensure standard photo rendering */
+    transition: transform 0.5s ease;
+}
+
+.producto-card:hover .producto-img {
+    transform: scale(1.05);
+    /* Nice zoom effect on hover */
+}
+
+.producto-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.producto-titulo {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.producto-precio {
+    font-size: 1.5rem;
+    color: #27ae60;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.producto-detalles {
+    margin-bottom: 15px;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+/* Conclusion Section */
+.conclusion-section {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.conclusion-section h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.conclusion-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.conclusion-text strong {
+    color: #2980b9;
+}
+
+/* Buttons */
+.btn-main,
+.btn-secondary,
+.btn-comprar {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-main {
+    background-color: #2980b9;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.btn-main:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-comprar {
+    background-color: #27ae60;
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+.btn-comprar:hover {
+    background-color: #2ecc71;
+}
+
+/* Priority/Star Rating Styles */
+.priority-container {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.priority-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #7f8c8d;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stars-container {
+    color: #e0e0e0;
+    /* Empty star color (gray) */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.star-filled {
+    color: #f1c40f;
+    /* Gold for filled stars */
+}
