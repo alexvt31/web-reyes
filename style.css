@@ -105,19 +105,61 @@ header p {
 .producto-img {
     width: 100%;
     height: 350px;
-    /* Reduced slightly to help with resolution */
-    /* Fixed height for consistent card sizes */
     object-fit: cover;
-    /* Fills entire area ("ocupa todo el espacio") */
-    object-position: top center;
-    /* Focus on top (faces/collars) */
+    object-position: center center;
     padding: 0;
-    /* No margins */
     background: white;
-    /* No background needed as it covers */
-    image-rendering: auto;
-    /* Ensure standard photo rendering */
     transition: transform 0.5s ease;
+
+    /* CAMBIO: Gradiente mucho más suave (del 5% al 95%) */
+    /* Antes te comía mucho borde, ahora solo "limpia" el final */
+    --g-vert: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    --g-horiz: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    
+    -webkit-mask-image: var(--g-vert), var(--g-horiz);
+    mask-image: var(--g-vert), var(--g-horiz);
+    
+    -webkit-mask-composite: source-in; 
+    mask-composite: intersect;
+}
+
+/* NUEVA CLASE: Para las fotos que NO quieres recortar (coches, avión...) */
+.producto-img.sin-fade {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+/* Clase para ver el producto entero (sin recortar nada) */
+/* Clase para imágenes especiales (avión, coches, pantalones largos) */
+.producto-img.ver-entero {
+    /* 1. Reseteamos el tamaño para que la caja mida lo que mide la foto */
+    object-fit: fill !important; /* Ya no usamos contain ni cover */
+    height: auto !important;     /* Altura automática */
+    width: auto !important;      /* Anchura automática */
+    
+    /* 2. Límites para que no se salga de la tarjeta */
+    max-width: 100%;
+    max-height: 350px;
+    
+    /* 3. Centrado */
+    display: block;
+    margin: 0 auto; /* Centrado horizontal */
+    
+    /* 4. REACTIVAMOS EL DEGRADADO (Importante) */
+    /* Como ahora la caja "abraza" a la foto, el degradado fundirá el borde exacto de la imagen */
+    --g-vert: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    --g-horiz: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    
+    -webkit-mask-image: var(--g-vert), var(--g-horiz) !important;
+    mask-image: var(--g-vert), var(--g-horiz) !important;
+    
+    -webkit-mask-composite: source-in !important;
+    mask-composite: intersect !important;
+    
+    /* Opcional: un pequeño margen abajo para separar del texto si la foto es corta */
+    margin-bottom: 10px;
+
+    mix-blend-mode: multiply;
 }
 
 .producto-card:hover .producto-img {
@@ -129,7 +171,9 @@ header p {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    /* Esto empuja la caja de texto al final de la tarjeta, haya o no haya foto */
+    margin-top: auto; 
+    flex-grow: 1; /* Mantenemos esto por seguridad */
 }
 
 .producto-titulo {
@@ -159,6 +203,7 @@ header p {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     max-width: 800px;
     margin: 0 auto 60px;
+    
 }
 
 .conclusion-section h2 {
@@ -253,4 +298,69 @@ header p {
 .star-filled {
     color: #f1c40f;
     /* Gold for filled stars */
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Tablet & Mobile (max-width: 900px) */
+@media (max-width: 900px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-productos {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+    header {
+        padding: 2rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .reporte-container {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    #tienda-regalos {
+        padding: 20px 10px;
+    }
+
+    .grid-productos {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .producto-img {
+        height: 300px;
+    }
+
+    .producto-titulo {
+        font-size: 1.2rem;
+    }
+
+    .producto-precio {
+        font-size: 1.3rem;
+    }
+
+    .conclusion-section {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .conclusion-text {
+        font-size: 1rem;
+        text-align: left;
+    }
 }
